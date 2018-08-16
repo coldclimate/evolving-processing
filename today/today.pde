@@ -1,4 +1,6 @@
 //Play this then run  convert -loop 0  *.png $(date +%Y_%m_%d).mpg && rm *.png
+// ffmpeg -r 60 -f image2 -s 1024x800 -i %04d.png -vcodec libx264 -crf 25  -pix_fmt yuv420p $(date +%Y_%m_%d).mp4 && rm *.png
+
 
 
 // Do anything you like below here
@@ -23,6 +25,16 @@ void drawMethod(){
     minorDiameter * sin(ticker), 
     minorDiameter * sin(ticker)
     );
+    
+  stroke(255, 100*sin(ticker*4), 10, 50);
+  
+  ellipse(
+    (WIDTH/2) + (sin(ticker)*majorDiameter) + (sin(ticker*8)*majorDiameter*0.75), 
+    (HEIGHT/2) + (cos(ticker)*majorDiameter) + (cos(ticker*8)*majorDiameter*0.75), 
+    minorDiameter * sin(ticker)*0.2, 
+    minorDiameter * sin(ticker)*0.2
+    );
+  
    
   // do one complete rotation every run
   ticker += (TWO_PI/FRAMELIMIT);
