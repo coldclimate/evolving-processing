@@ -27,12 +27,12 @@ void drawMethod(){
     );
     
   stroke(255, 100*sin(ticker*4), 10, 50);
-  
+  fill(100*sin(ticker*4),10, 255, 80);
   ellipse(
-    (WIDTH/2) + (sin(ticker)*majorDiameter) + (sin(ticker*8)*majorDiameter*0.75), 
-    (HEIGHT/2) + (cos(ticker)*majorDiameter) + (cos(ticker*8)*majorDiameter*0.75), 
-    minorDiameter * sin(ticker)*0.2, 
-    minorDiameter * sin(ticker)*0.2
+    (WIDTH/2) + (sin(ticker)*majorDiameter) + (sin(ticker*8)*majorDiameter*0.75) + (sin(ticker*128)*majorDiameter*0.1), 
+    (HEIGHT/2) + (cos(ticker)*majorDiameter) + (cos(ticker*8)*majorDiameter*0.75) + (cos(ticker*128)*majorDiameter*0.1), 
+    minorDiameter * sin(ticker)*0.1, 
+    minorDiameter * sin(ticker)*0.1
     );
   
    
@@ -64,7 +64,7 @@ void setup() {
 void draw() {
   frameCount++;
   if (!DEBUG){
-    saveFrame(year()+"_"+month()+"_"+day()+"_####.png");
+    saveFrame("####.png");
   }
   if (frameCount == FRAMELIMIT) {
     exit();
