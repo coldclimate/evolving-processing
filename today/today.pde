@@ -14,18 +14,21 @@ Boolean DEBUG = false;
 
 
 void drawMethod(){
-  
+    
   noFill();
  // stroke(90,80);
   strokeWeight(2);
-  stroke(100*sin(ticker*4),10, 255, 20);
-  
+  stroke(100*sin(ticker*4),10, 255, 5);
+ 
   line(
+  frameCount,0,
     (WIDTH/2) + (sin(ticker)*majorDiameter) + (sin(ticker*8)*majorDiameter*0.75), 
-    (HEIGHT/2) + (cos(ticker)*majorDiameter) + (cos(ticker*8)*majorDiameter*0.75), 
-    (WIDTH/2) + (sin(ticker)*majorDiameter), 
-    (WIDTH/2) + (cos(ticker)*majorDiameter)
+    (HEIGHT/2) + (cos(ticker)*majorDiameter) + (cos(ticker*8)*majorDiameter*0.75)
+   // (WIDTH/2) + (sin(ticker)*majorDiameter), 
+   // (WIDTH/2) + (cos(ticker)*majorDiameter)
+
     );
+    
     
   stroke(255, 100*sin(ticker*4), 10, 50);
   strokeWeight(2);
