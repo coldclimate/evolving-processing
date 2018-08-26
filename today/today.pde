@@ -9,36 +9,39 @@ float minorDiameter = 50;
 float ticker = 0;
 
 // set to true to not save images whilst working
-Boolean DEBUG = true;
+Boolean DEBUG = false;
 
-
+// (WIDTH/2) + (sin(ticker)*majorDiameter)
 
 void drawMethod(){  
   noFill();
  // stroke(90,80);
-  strokeWeight(2);
+ 
+ /*
+ for (float j=0; j<1;j=j+0.1){
+ for (float i=0; i<1;i=i+0.1){
+  strokeWeight(1);
   stroke(100*sin(ticker*4),10, 255, 10);
-  line(
- // WIDTH*float(frameCount)/float(FRAMELIMIT),(sin(ticker*8)*majorDiameter*0.75),
-    (WIDTH/2) + (sin(ticker)*majorDiameter) + (sin(ticker*8)*majorDiameter*0.75), 
-    (HEIGHT/2) + (cos(ticker)*majorDiameter) + (cos(ticker*8)*majorDiameter*0.75),
-    (sin(ticker)*majorDiameter), 
-    (cos(ticker)*majorDiameter)
-
+  rect(
+    i*WIDTH,
+    j*WIDTH,
+    100+(sin(ticker)*majorDiameter),
+    100+(sin(ticker)*majorDiameter));
+ }
+ }
+ */
+  for (float j=0; j<1.1;j=j+0.1){
+ for (float i=0; i<1.1;i=i+0.1){
+  strokeWeight(1);
+  stroke(255, 255*sin(ticker*4), 05, 05);
+  ellipse(
+    i*(WIDTH+majorDiameter),
+    j*(WIDTH+majorDiameter),
+    100+(sin(ticker)*majorDiameter),
+    100+(cos(ticker)*majorDiameter)
     );
-    
-    
-  stroke(255, 100*sin(ticker*4), 10, 10);
-  strokeWeight(2);
-  noFill();
- // fill(100*sin(ticker*4),10, 255, 80);
-  line(
-    //WIDTH*float(frameCount)/float(FRAMELIMIT),HEIGHT-(sin(ticker*8)*majorDiameter*0.75),
-    (WIDTH/2) + (sin(ticker)*majorDiameter) + (sin(ticker*8)*majorDiameter*0.75) + (sin(ticker*128)*majorDiameter*0.1), 
-    (HEIGHT/2) + (cos(ticker)*majorDiameter) + (cos(ticker*8)*majorDiameter*0.75) + (cos(ticker*128)*majorDiameter*0.1),
-    WIDTH-(sin(ticker)*majorDiameter), 
-    HEIGHT-(cos(ticker)*majorDiameter)
-    );
+ }
+ }
    
   // do one complete rotation every run
   ticker += (TWO_PI/FRAMELIMIT);
