@@ -31,16 +31,14 @@ void drawMethod(){
  }
  */
   for (float j=0; j<1.1;j=j+0.1){
- for (float i=0; i<1.1;i=i+0.1){
   strokeWeight(1);
-  stroke(255, 255*sin(ticker*4), 05, 05);
-  ellipse(
-    i*(WIDTH+majorDiameter),
-    j*(WIDTH+majorDiameter),
-    100+(sin(ticker)*majorDiameter),
-    100+(cos(ticker)*majorDiameter)
+  stroke(255, 255*sin(ticker*4), 50, 05);
+  rect(
+    (WIDTH/2)+ (majorDiameter*sin(ticker+TWO_PI*j)),
+    (HEIGHT/2)+ (majorDiameter*cos(ticker+TWO_PI*j)),
+    100,
+    100
     );
- }
  }
    
   // do one complete rotation every run
