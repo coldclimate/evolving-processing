@@ -17,29 +17,22 @@ void drawMethod(){
   noFill();
  // stroke(90,80);
  
- /*
- for (float j=0; j<1;j=j+0.1){
- for (float i=0; i<1;i=i+0.1){
+ 
+ for (float j=0; j<1.1;j=j+0.1){
+ for (float i=0; i<1.1;i=i+0.1){
   strokeWeight(1);
-  stroke(100*sin(ticker*4),10, 255, 10);
-  rect(
+  stroke(100*sin(ticker*4),10, 255, 5);
+  float rando=random(WIDTH/10);
+  ellipse(
     i*WIDTH,
     j*WIDTH,
-    100+(sin(ticker)*majorDiameter),
-    100+(sin(ticker)*majorDiameter));
- }
- }
- */
-  for (float j=0; j<1.1;j=j+0.1){
-  strokeWeight(1);
-  stroke(255, 255*sin(ticker*4), 50, 05);
-  rect(
-    (WIDTH/2)+ (majorDiameter*sin(ticker+TWO_PI*j)),
-    (HEIGHT/2)+ (majorDiameter*cos(ticker+TWO_PI*j)),
-    100,
-    100
+    rando,
+    rando
     );
  }
+ }
+ 
+ 
    
   // do one complete rotation every run
   ticker += (TWO_PI/FRAMELIMIT);
