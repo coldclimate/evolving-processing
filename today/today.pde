@@ -9,7 +9,7 @@ float minorDiameter = 50;
 float ticker = 0;
 
 // set to true to not save images whilst working
-Boolean DEBUG = false;
+Boolean DEBUG = true;
 
 // (WIDTH/2) + (sin(ticker)*majorDiameter)
 
@@ -21,13 +21,14 @@ void drawMethod(){
  for (float j=0; j<1.1;j=j+0.1){
  for (float i=0; i<1.1;i=i+0.1){
   strokeWeight(1);
-  stroke(100*sin(ticker*4),10, 255, 5);
-  float rando=random(WIDTH/10);
-  ellipse(
-    i*WIDTH,
-    j*WIDTH,
-    rando,
-    rando
+  float rando=random(1);
+  stroke(rando,10, 255, 5);
+  
+  rect(
+    i*WIDTH - ( (rando*WIDTH*0.10) * 0.5 ),
+    j*WIDTH - ( (rando*WIDTH*0.10) * 0.5 ),
+    (rando*WIDTH*0.1),
+    (rando*WIDTH*0.1)
     );
  }
  }
