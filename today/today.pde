@@ -9,26 +9,27 @@ float minorDiameter = 50;
 float ticker = 0;
 
 // set to true to not save images whilst working
-Boolean DEBUG = true;
+Boolean DEBUG = false;
 
 // (WIDTH/2) + (sin(ticker)*majorDiameter)
 
 void drawMethod(){  
-  noFill();
  // stroke(90,80);
  
  
- for (float j=0; j<1.1;j=j+0.1){
- for (float i=0; i<1.1;i=i+0.1){
+ for (float j=0; j<1.1;j=j+0.2){
+ for (float i=0; i<1.1;i=i+0.2){
   strokeWeight(1);
   float rando=random(1);
-  stroke(rando,10, 255, 5);
-  
-  rect(
-    i*WIDTH - ( (rando*WIDTH*0.10) * 0.5 ),
-    j*WIDTH - ( (rando*WIDTH*0.10) * 0.5 ),
-    (rando*WIDTH*0.1),
-    (rando*WIDTH*0.1)
+  stroke(rando,rando, rando, 5);
+  fill(rando,rando, rando, 1);
+  triangle(
+    i*WIDTH  + (random(1)*WIDTH*0.20) ,
+    j*HEIGHT + (random(1)*WIDTH*0.20) ,
+    i*WIDTH  + (random(1)*WIDTH*0.20) ,
+    j*HEIGHT + (random(1)*WIDTH*0.20) ,
+    i*WIDTH  + (random(1)*WIDTH*0.20) ,
+    j*HEIGHT + (random(1)*WIDTH*0.20) 
     );
  }
  }
