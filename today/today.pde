@@ -9,7 +9,7 @@ float minorDiameter = 50;
 float ticker = 0;
 
 // set to true to not save images whilst working
-Boolean DEBUG = false;
+Boolean DEBUG = true;
 
 // (WIDTH/2) + (sin(ticker)*majorDiameter)
 
@@ -17,7 +17,7 @@ void drawMethod(){
  // stroke(90,80);
  
  
- for (float j=0; j<1.1;j=j+0.2){
+ for (float j=-0.2; j<1.1;j=j+0.2){
  for (float i=0; i<1.1;i=i+0.2){
   strokeWeight(1);
   float rando=random(1);
