@@ -9,7 +9,7 @@ float minorDiameter = 50;
 float ticker = 0;
 
 // set to true to not save images whilst working
-Boolean DEBUG = true;
+Boolean DEBUG = false;
 
 // (WIDTH/2) + (sin(ticker)*majorDiameter)
 
@@ -17,27 +17,30 @@ void drawMethod(){
  // stroke(90,80);
  
  
- for (float j=-0.2; j<1.1;j=j+0.2){
- for (float i=0; i<1.1;i=i+0.2){
   strokeWeight(1);
+  float colourR = random(1); 
+  stroke(20,20,100,10);
+  noFill();
+  //fill(rando,rando, rando, 1);
+  for (float i=0; i<1.1;i=i+0.2){
   float rando=random(1);
-  stroke(rando,rando, rando, 5);
-  fill(rando,rando, rando, 1);
+  float rando2=random(1);
+  float rando3=random(1);
+  float scale = ticker/FRAMELIMIT;
   triangle(
-    i*WIDTH  + (random(1)*WIDTH*0.20) ,
-    j*HEIGHT + (random(1)*WIDTH*0.20) ,
-    i*WIDTH  + (random(1)*WIDTH*0.20) ,
-    j*HEIGHT + (random(1)*WIDTH*0.20) ,
-    i*WIDTH  + (random(1)*WIDTH*0.20) ,
-    j*HEIGHT + (random(1)*WIDTH*0.20) 
+    (WIDTH*0.5)  +  (sin(TWO_PI*rando) * WIDTH * 0.3  * rando3),
+    (HEIGHT*0.5)  + (cos(TWO_PI*rando) * HEIGHT * 0.3 * rando3),
+    (WIDTH*0.5)  +  (sin(TWO_PI*rando2) * WIDTH * 0.3 * rando),
+    (HEIGHT*0.5)  + (cos(TWO_PI*rando2) * HEIGHT * 0.3 * rando),
+    (WIDTH*0.5)  +  (sin(TWO_PI*rando3) * WIDTH * 0.3 * rando2),
+    (HEIGHT*0.5)  + (cos(TWO_PI*rando3) * HEIGHT * 0.3 * rando2)
     );
- }
- }
+  }
  
  
    
   // do one complete rotation every run
-  ticker += (TWO_PI/FRAMELIMIT);
+  ticker += 1;
   
 }
 
