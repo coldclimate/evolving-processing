@@ -8,7 +8,7 @@ float circleWidth = 10;
 
 
 // set to true to not save images whilst working
-Boolean DEBUG = true;
+Boolean DEBUG = false;
 
 
 
@@ -82,7 +82,7 @@ int frameCount = 0;
 void setup() {
 // ironically you can't use variables in size, so these are duplicated
   size(800, 600);
-  background(255, 255, 255);
+  background(0,0,0);
 }
 
 
