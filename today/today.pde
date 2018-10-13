@@ -17,20 +17,14 @@ void drawMethod(){
   blendMode(ADD);
   float randA = random(1);
   float randB = random(1);
- 
-
- 
+  strokeWeight(10);
   int increments = 10;
  
- 
- 
- 
- 
-  float majorRadius = random(400);
+  float majorRadius = random(1000);
   
   
    for(float p=0;p<1;p=p+0.1){
-      color from = color(0, 50, 100,40);
+      color from = color(0, 5, 10,5);
       color to = color(255, 100, 100,10);
   /*  if (random(10) > 9){
         from = color(255, 100, 255,40);
@@ -56,13 +50,13 @@ void drawMethod(){
    (HEIGHT) - (yIncrement*j) 
    );
    }
- /*  fill(255,255,0,50);
+   fill(255,255,0,50);
    ellipse(
    (WIDTH/2)+ (xIncrement*increments),
    (HEIGHT) - (yIncrement*increments),
    3,
    3);
-   */
+   
    }
  
  
