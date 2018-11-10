@@ -16,19 +16,19 @@ Boolean DEBUG = false;
 void drawMethod() {
   noFill();
   blendMode(ADD);
-  strokeWeight(40);
+  strokeWeight(10);
   colorMode(HSB, 100);
 
   float majorRadius = random(500);
 
   if (frameCount > 312) {
     blendMode(SUBTRACT);
-      strokeWeight(15);
+      strokeWeight(10);
   }
   
-  for (float p = 0; p < 1; p = p + 0.1) {
+  for (float p = 0; p < 10; p = p + 0.1) {
     float rando = random(1);
-    stroke (random(80),random(80),1);
+    stroke (25,50,1);
     line(
       WIDTH/2,
       HEIGHT/2,
