@@ -3,12 +3,12 @@
 
 
 // Do anything you like below here
-float circleWidth = 10;
-
+float circleWidth = 40;
+float majorRadius = 200;
 
 
 // set to true to not save images whilst working
-Boolean DEBUG = false;
+Boolean DEBUG = true;
 
 
 
@@ -19,21 +19,22 @@ void drawMethod() {
   strokeWeight(10);
   colorMode(HSB, 100);
 
-  float majorRadius = random(500);
+
 
   if (frameCount > 312) {
     blendMode(SUBTRACT);
       strokeWeight(10);
   }
   
-  for (float p = 0; p < 10; p = p + 0.1) {
+  for (float p = 0; p < 1; p = p + 0.1) {
     float rando = random(1);
+    float rando2 = random(1);
     stroke (25,50,1);
-    line(
-      WIDTH/2,
-      HEIGHT/2,
-      (WIDTH/2) + (majorRadius*sin(rando*TWO_PI)),
-      (HEIGHT/2)+ (majorRadius*cos(rando*TWO_PI))
+    rect(
+      (WIDTH/2)+(majorRadius * sin(TWO_PI*rando)),
+      (HEIGHT/2)+(majorRadius * cos(TWO_PI*rando)),
+      circleWidth*rando,
+      circleWidth*rando
     );
   }
 
