@@ -3,12 +3,12 @@
 
 
 // Do anything you like below here
-float circleWidth = 40;
+float circleWidth = 80;
 float majorRadius = 200;
 
 
 // set to true to not save images whilst working
-Boolean DEBUG = true;
+Boolean DEBUG = false;
 
 
 
@@ -21,20 +21,20 @@ void drawMethod() {
 
 
 
-  if (frameCount > 312) {
+  if (frameCount > 600) {
     blendMode(SUBTRACT);
       strokeWeight(10);
   }
   
-  for (float p = 0; p < 1; p = p + 0.1) {
+  for (float p = 0; p < 6; p = p + 0.1) {
     float rando = random(1);
     float rando2 = random(1);
-    stroke (25,50,1);
-    rect(
+    stroke (100*rando,50*rando2,1);
+    ellipse(
       (WIDTH/2)+(majorRadius * sin(TWO_PI*rando)),
       (HEIGHT/2)+(majorRadius * cos(TWO_PI*rando)),
-      circleWidth*rando,
-      circleWidth*rando
+      circleWidth*rando2,
+      10
     );
   }
 
