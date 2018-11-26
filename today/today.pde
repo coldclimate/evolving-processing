@@ -2,43 +2,26 @@
 // ffmpeg -r 60 -f image2 -s 1024x800 -i %04d.png -vcodec libx264 -crf 25  -pix_fmt yuv420p $(date +%Y_%m_%d).mp4 && rm *.png
 
 
-// Do anything you like below here
-float circleWidth = 80;
-float majorRadius = 200;
-
-
 // set to true to not save images whilst working
 Boolean DEBUG = false;
+float x = 400;
+float y = 300;
 
 
 
 
 void drawMethod() {
-  noFill();
-  blendMode(ADD);
-  strokeWeight(10);
-  colorMode(HSB, 100);
-
-
-
-  if (frameCount > 600) {
-    blendMode(SUBTRACT);
-      strokeWeight(10);
+blendMode(ADD);
+  for (float i=0;i<1.1;i=i+0.0001){
+    
+  stroke(lerpColor(color(255, 0, 128, 20), color(36, 248, 229,20), i));  
+  point(x,y);
+  x = x + random(4) -2;
+  y = y + random(4) -2;
+  x = x % WIDTH;
+  y = y % HEIGHT;
   }
   
-  for (float p = 0; p < 6; p = p + 0.1) {
-    float rando = random(1);
-    float rando2 = random(1);
-    stroke (100*rando,50*rando2,1);
-    ellipse(
-      (WIDTH/2)+(majorRadius * sin(TWO_PI*rando)),
-      (HEIGHT/2)+(majorRadius * cos(TWO_PI*rando)),
-      circleWidth*rando2,
-      10
-    );
-  }
-
-
 }
 
 
