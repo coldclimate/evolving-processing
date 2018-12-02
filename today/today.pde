@@ -4,22 +4,54 @@
 
 // set to true to not save images whilst working
 Boolean DEBUG = false;
-float x = 400;
-float y = 300;
+  
+int howMany = 100;
+float maxSize = 20;
+float[][] points = new float[howMany][4];
+
 
 
 
 
 void drawMethod() {
-blendMode(ADD);
-  for (float i=0;i<1.1;i=i+0.0001){
+  //background(0);
+  noFill();
+  blendMode(ADD);
+  
+
+  if(frameCount < 2){
+    for(int i=0; i<howMany;i++){
+         points[i][0] = random(1)*WIDTH;
+         points[i][1] = random(1)*HEIGHT;
+         points[i][2] = random(1)*maxSize; // size
+         points[i][3] = random(2);
+    }
+  
+
+  }
+  
+  for(int i=0; i<howMany;i++){
+      if(points[i][3] > 1){ 
+        stroke(0,100,255,20);
+      }else{
+        stroke(255,105,180,20);
+      }
+      
+     ellipse(
+       points[i][0],
+       points[i][1],
+       j,
+       j
+     );
     
-  stroke(lerpColor(color(255, 0, 128, 20), color(36, 248, 229,20), i));  
-  point(x,y);
-  x = x + random(4) -2;
-  y = y + random(4) -2;
-  x = x % WIDTH;
-  y = y % HEIGHT;
+    if(points[i][3] > 1){ 
+     points[i][0] = (points[i][0] + points[i][2] ) % WIDTH;
+    }else{
+      points[i][0] = (points[i][0] - points[i][2] );
+      if (points[i][0] <0){
+        points[i][0] = WIDTH;
+      }
+    }
   }
   
 }
