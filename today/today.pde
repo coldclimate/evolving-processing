@@ -6,7 +6,7 @@
 Boolean DEBUG = false;
   
 int howMany = 100;
-float maxSize = 20;
+float maxSize = 40;
 float[][] points = new float[howMany][4];
 
 
@@ -15,7 +15,6 @@ float[][] points = new float[howMany][4];
 
 void drawMethod() {
   //background(0);
-  noFill();
   blendMode(ADD);
   
 
@@ -32,26 +31,24 @@ void drawMethod() {
   
   for(int i=0; i<howMany;i++){
       if(points[i][3] > 1){ 
-        stroke(0,100,255,20);
+        fill(0,100,255,20);
       }else{
-        stroke(255,105,180,20);
+        fill(255,105,180,20);
       }
       
-     ellipse(
+     rect(
        points[i][0],
        points[i][1],
-       j,
-       j
+       points[i][2],
+       points[i][2]
      );
     
-    if(points[i][3] > 1){ 
-     points[i][0] = (points[i][0] + points[i][2] ) % WIDTH;
-    }else{
-      points[i][0] = (points[i][0] - points[i][2] );
-      if (points[i][0] <0){
-        points[i][0] = WIDTH;
-      }
-    }
+     points[i][0] = (points[i][0] + (0.5 * points[i][2]) ) % WIDTH;
+     points[i][2] = points[i][2] -1 ;
+
+     if(points[i][2] == 0){
+      points[i][2] = random(maxSize);
+     }
   }
   
 }
