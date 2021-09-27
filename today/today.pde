@@ -22,7 +22,7 @@ void update() {
   if(frameCount==1000){exit();}
   
   
-  for(int i=0; i<pointsCount;i++){
+ /* for(int i=0; i<pointsCount;i++){
     //move
     
     // framecount runs from 0 to 1000
@@ -36,7 +36,7 @@ void update() {
     if(points[i][0] > width){points[i][0] = 0;}
     if(points[i][1] <0 ){points[i][1] = height;}
     if(points[i][1] >height){points[i][1] = 0;}
-  }
+  } */
   
 
   
@@ -45,9 +45,12 @@ void update() {
 void draw() {
   //background(0);
 
+noFill();
   for(int i=0; i<pointsCount;i++){
-    fill(points[i][2]*50,100,points[i][2]*50,10);
-    ellipse(points[i][0], points[i][1], 10,10);
+    
+    float mysteriousValue=(50*points[i][2]*sin(2*PI*(float)(frameCount)/500));
+    stroke(mysteriousValue,points[i][2]*50,mysteriousValue,5);
+    rect(points[i][0]-(0.5*mysteriousValue), points[i][1]-(0.5*mysteriousValue), mysteriousValue,mysteriousValue);
   }
   saveFrame("####.png");
   update();
