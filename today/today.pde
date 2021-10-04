@@ -47,17 +47,18 @@ void draw() {
   //background(0);
 
 noFill();
-  for(int i=0; i<100;i++){
+  for(int i=0; i<5;i++){
     float r = random(1);
     float xcircle = sin(r * 2 * PI);
     float ycircle = cos(r * 2 * PI);
     println(r);
-    line( (width/2)+(xcircle*(50+random(150))),
-          (height/2)+(ycircle*(50+random(150))),
+    line( (width/2)+(xcircle*(50+random(120))),
+          (height/2)+(ycircle*(50+random(120))),
           (width/2)+(xcircle*(20+random(20))),
           (height/2)+(ycircle*(20+random(20)))
           );
-    stroke(100*r,100,1);
+    stroke(100*xcircle,100,10);
+    print(xcircle);
     
   }
   saveFrame("####.png");
