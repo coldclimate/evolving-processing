@@ -7,13 +7,14 @@ void setup() {
   background(0);
   blendMode(ADD);
   frameRate(300);
+  colorMode(HSB, 100);
+  strokeWeight(8);
   
   points = new int[pointsCount][3];
   for(int i=0;i<pointsCount;i++){
     points[i][0]=(int)(random(1)*width); //x
     points[i][1]=(int)(random(1)*height); //y
     points[i][2]=(int)(random(5)+1);  //speed
-    println(points[i][2]);
   }
   
 }
@@ -46,11 +47,18 @@ void draw() {
   //background(0);
 
 noFill();
-  for(int i=0; i<pointsCount;i++){
+  for(int i=0; i<100;i++){
+    float r = random(1);
+    float xcircle = sin(r * 2 * PI);
+    float ycircle = cos(r * 2 * PI);
+    println(r);
+    line( (width/2)+(xcircle*(50+random(150))),
+          (height/2)+(ycircle*(50+random(150))),
+          (width/2)+(xcircle*(20+random(20))),
+          (height/2)+(ycircle*(20+random(20)))
+          );
+    stroke(100*r,100,1);
     
-    float mysteriousValue=(50*points[i][2]*sin(2*PI*(float)(frameCount)/500));
-    stroke(mysteriousValue,points[i][2]*50,mysteriousValue,5);
-    rect(points[i][0]-(0.5*mysteriousValue), points[i][1]-(0.5*mysteriousValue), mysteriousValue,mysteriousValue);
   }
   saveFrame("####.png");
   update();
