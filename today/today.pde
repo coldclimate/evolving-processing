@@ -8,7 +8,6 @@ void setup() {
   blendMode(ADD);
   frameRate(300);
   colorMode(HSB, 100);
-  strokeWeight(8);
   
   points = new int[pointsCount][3];
   for(int i=0;i<pointsCount;i++){
@@ -51,14 +50,14 @@ noFill();
     float r = random(1);
     float xcircle = sin(r * 2 * PI);
     float ycircle = cos(r * 2 * PI);
-    println(r);
+    strokeWeight(abs(8*ycircle));
     line( (width/2)+(xcircle*(50+random(120))),
           (height/2)+(ycircle*(50+random(120))),
           (width/2)+(xcircle*(20+random(20))),
           (height/2)+(ycircle*(20+random(20)))
           );
     stroke(100*xcircle,100,10);
-    print(xcircle);
+   // print(xcircle);
     
   }
   saveFrame("####.png");
