@@ -50,13 +50,18 @@ noFill();
     float r = random(1);
     float xcircle = sin(r * 2 * PI);
     float ycircle = cos(r * 2 * PI);
-    strokeWeight(abs(8*ycircle));
-    line( (width/2)+(xcircle*(50+random(120))),
-          (height/2)+(ycircle*(50+random(120))),
-          (width/2)+(xcircle*(20+random(20))),
-          (height/2)+(ycircle*(20+random(20)))
-          );
-    stroke(100*xcircle,100,10);
+    
+    float smallRandom=random(20);
+    float largeRandom=random(120);
+    
+    strokeWeight(largeRandom/4);
+    
+    point( (width/2)+(xcircle*(50+largeRandom)),
+          (height/2)+(ycircle*(50+largeRandom)));//,
+        //  (width/2)+(xcircle*(20+smallRandom)),
+        //  (height/2)+(ycircle*(20+smallRandom))
+        //  );
+    stroke(smallRandom*4,100,10);
    // print(xcircle);
     
   }
