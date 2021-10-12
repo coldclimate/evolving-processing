@@ -52,16 +52,15 @@ noFill();
     float ycircle = cos(r * 2 * PI);
     
     float smallRandom=random(20);
-    float largeRandom=random(120);
+    float largeRandom=50+random(50);
+    strokeWeight(smallRandom/4);
+    stroke(abs(xcircle*25),100,10);
+    rect( (width/2)+(xcircle*largeRandom),
+          (height/2)+(ycircle*largeRandom),
+         5,
+         smallRandom
+          );
     
-    strokeWeight(largeRandom/4);
-    
-    point( (width/2)+(xcircle*(50+largeRandom)),
-          (height/2)+(ycircle*(50+largeRandom)));//,
-        //  (width/2)+(xcircle*(20+smallRandom)),
-        //  (height/2)+(ycircle*(20+smallRandom))
-        //  );
-    stroke(smallRandom*4,100,10);
    // print(xcircle);
     
   }
