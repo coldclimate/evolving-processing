@@ -1,6 +1,6 @@
 
-int[][] points;
-int pointsCount=60;
+float[][] points;
+int pointsCount=150;
 int eyeheight;
 
 void setup() {
@@ -10,39 +10,31 @@ void setup() {
   blendMode(ADD);
   frameRate(300);
   colorMode(HSB, 100);
-  eyeheight = 600;
-  
-  points = new int[pointsCount][3];
+  eyeheight = 1400;
+
+  // populate out cubes
+  points = new float[pointsCount][6];
   for(int i=0;i<pointsCount;i++){
-    points[i][0]=(int)(random(1)*width); //x
-    points[i][1]=(int)(random(1)*height); //y
-    points[i][2]=(int)(random(5)+1);  //speed
+    float r = random(1);
+    float xcircle = sin(r * 2 * PI);
+    float ycircle = cos(r * 2 * PI);
+    
+    float smallRandom=random(20);
+    float largeRandom=50+random(50);
+    
+      points[i][0]=(width/2)+(xcircle*largeRandom);
+      points[i][1]=(height/2)+(ycircle*largeRandom);
+      points[i][2]=-300 + (largeRandom*6);
+      points[i][3]=r;
+      points[i][4]=smallRandom;
+      points[i][5]=largeRandom;
   }
   
 }
 
 void update() {
   if(frameCount==1000){exit();}
-  eyeheight--;
-  
-  
- /* for(int i=0; i<pointsCount;i++){
-    //move
-    
-    // framecount runs from 0 to 1000
-    float temp = (float)(frameCount);
-    
-    points[i][0]+= sin((temp/1000)*2*PI)*points[i][2];
-    points[i][1]+= cos((temp/1000)*2*PI)*points[i][2];
-
-    //wrapround world
-    if(points[i][0] <0){points[i][0] = width;}
-    if(points[i][0] > width){points[i][0] = 0;}
-    if(points[i][1] <0 ){points[i][1] = height;}
-    if(points[i][1] >height){points[i][1] = 0;}
-  } */
-  
-
+  eyeheight=eyeheight-2;
   
 }
 
@@ -57,33 +49,23 @@ camera(
   width/2.0, height/2.0, 0,
   0, 1, 0
   );
-
-  for(int i=0; i<5;i++){
-    float r = random(1);
-    float xcircle = sin(r * 2 * PI);
-    float ycircle = cos(r * 2 * PI);
+   
+   for(int i=0;i<pointsCount;i++){
+     pushMatrix();
+    strokeWeight(random(10)); // becuase this is random very frame, it makes them "twinkle"
+    stroke(points[i][3]*100,points[i][5],10);
     
-    float smallRandom=random(20);
-    float largeRandom=50+random(50);
-    pushMatrix();
-    strokeWeight(smallRandom/4);
-    stroke(r*100,largeRandom,10);
     translate(
-      (width/2)+(xcircle*largeRandom),
-      (height/2)+(ycircle*largeRandom),
-      largeRandom*3
+      points[i][0],
+      points[i][1],
+      points[i][2]
       );
 
-    box(smallRandom);
-  //  rect( (width/2)+(xcircle*largeRandom),
-  //        (height/2)+(ycircle*largeRandom),
-  //       5,
-  //       smallRandom
-  //        );
+    box(points[i][4]);
     popMatrix();
-   // print(xcircle);
-    
+     
   }
+
   saveFrame("####.png");
   update();
 }
