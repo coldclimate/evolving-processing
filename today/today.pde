@@ -20,7 +20,7 @@ void setup() {
     float ycircle = cos(r * 2 * PI);
     
     float smallRandom=random(20);
-    float largeRandom=50+random(50);
+    float largeRandom=50+random(100);
     
       points[i][0]=(width/2)+(xcircle*largeRandom);
       points[i][1]=(height/2)+(ycircle*largeRandom);
