@@ -1,6 +1,6 @@
 
 float[][] points;
-int pointsCount=150;
+int pointsCount=250;
 int eyeheight;
 
 void setup() {
@@ -19,7 +19,7 @@ void setup() {
     float xcircle = sin(r * 2 * PI);
     float ycircle = cos(r * 2 * PI);
     
-    float smallRandom=random(20);
+    float smallRandom=10+random(20);
     float largeRandom=50+random(100);
     
       points[i][0]=(width/2)+(xcircle*largeRandom);
@@ -45,15 +45,15 @@ noFill();
 //camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ)
 
 camera(
-  width/2.0, height/2.0, eyeheight,
+  (width/2.0) + (100*sin(8*PI*(frameCount/(float)(1000)))), (height/2.0) + (100*cos(8*PI*(frameCount/(float)(1000)))), eyeheight,
   width/2.0, height/2.0, 0,
   0, 1, 0
   );
-   
    for(int i=0;i<pointsCount;i++){
      pushMatrix();
-    strokeWeight(random(10)); // becuase this is random very frame, it makes them "twinkle"
-    stroke(points[i][3]*100,points[i][5],10);
+    strokeWeight(1); // becuase this is random very frame, it makes them "twinkle"
+    fill(40,points[i][5],10);
+    stroke(points[i][3]*100,points[i][5],50);
     
     translate(
       points[i][0],
