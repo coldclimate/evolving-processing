@@ -10,24 +10,19 @@ void setup() {
   blendMode(ADD);
   frameRate(300);
   colorMode(HSB, 100);
-  eyeheight = 1400;
+  eyeheight = 1000;
 
   // populate out cubes
-  points = new float[pointsCount][6];
+  points = new float[pointsCount][3];
   for(int i=0;i<pointsCount;i++){
-    float r = random(1);
-    float xcircle = sin(r * 2 * PI);
-    float ycircle = cos(r * 2 * PI);
+    float r = random(2*PI); // 
     
     float smallRandom=10+random(20);
     float largeRandom=50+random(100);
     
-      points[i][0]=(width/2)+(xcircle*largeRandom);
-      points[i][1]=(height/2)+(ycircle*largeRandom);
-      points[i][2]=-300 + (largeRandom*6);
-      points[i][3]=r;
-      points[i][4]=smallRandom;
-      points[i][5]=largeRandom;
+      points[i][0]=r;
+      points[i][1]=random(0.1);
+      points[i][2]=50+random(200);
   }
   
 }
@@ -51,20 +46,20 @@ camera(
   );
    for(int i=0;i<pointsCount;i++){
      pushMatrix();
-    strokeWeight(2); // becuase this is random very frame, it makes them "twinkle"
-    fill(points[i][3]*100,points[i][5],20);
+     strokeWeight(2); // becuase this is random very frame, it makes them "twinkle"
+     fill(points[i][0]*2,points[i][0]*2,10+random(20));
    // stroke(points[i][3]*100,points[i][5],50);
     
     translate(
-      points[i][0],
-      points[i][1],
-      points[i][2]
+      (width/2)+sin(points[i][0]) * points[i][2],
+      (height/2)+cos(points[i][0]) * points[i][2],
+      0
       );
         
 
-    box(points[i][4],points[i][4],points[i][5]);
+    box(points[i][0]*3);
     popMatrix();
-     
+    points[i][0] = points[i][0] + points[i][1];
   }
 
   saveFrame("####.png");
