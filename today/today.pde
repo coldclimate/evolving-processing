@@ -10,8 +10,8 @@ void setup() {
   blendMode(ADD);
   frameRate(300);
   colorMode(HSB, 100);
-  strokeWeight(2); // becuase this is random very frame, it makes them "twinkle"
-  eyeheight = 1000;
+  strokeWeight(5); // becuase this is random very frame, it makes them "twinkle"
+  eyeheight = 500;
 
   // populate out cubes
   points = new float[pointsCount*pointsCount][3];
@@ -29,7 +29,8 @@ void setup() {
 
 void update() {
   if(frameCount==1000){exit();}
-  eyeheight=eyeheight-2;
+  eyeheight=eyeheight-4;
+  if(eyeheight <-1000){eyeheight=-1000;}
 }
 
 void draw() {
@@ -43,9 +44,12 @@ camera(
   width/2.0, height/2.0, 0,
   0, 1, 0
   );
-  
+  int second = ((int)(frameCount/10));
    for(int i=0;i<pointsCount;i++){
-         fill(cos(points[i][1])*80,100,100);
+         stroke(cos(points[i][1])*100, 100,second);
+         //fill(cos(points[i][1])*100, second,100);
+         //fill(cos(points[i][1])*100, 20,100);
+ 
          pushMatrix();
          translate(
           (width/2)+
@@ -55,11 +59,12 @@ camera(
             cos(points[i][0])*200+
             cos(points[i][1])*80,
           cos(points[i][1])*80);
+          sphereDetail(1);
           sphere(points[i][2]);
          popMatrix();
         
-         // points[i][0]+=0.01;
-          points[i][1]+=0.01;
+          points[i][0]+=0.01;
+          points[i][1]+=0.1;
       
    }
      
