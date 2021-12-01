@@ -1,10 +1,12 @@
 
-int[][] points;
-int howMany=10;
-int spacer = 40;
+float[][] points;
+int howMany=200;
+int spacer = 80;
 
 
 void setup() {
+  background(0);
+ // blendMode(ADD);
 
   size(400, 400);
   frameRate(300);
@@ -12,12 +14,12 @@ void setup() {
   
   rectMode(CENTER);
   
-  points = new int[howMany][howMany];
+  points = new float[howMany][3];
   
   for(int row=0;row<howMany;row++){
-    for(int column=0;column<howMany;column++){
-        points[row][column] = 20+(int)(random(spacer));
-    }
+    points[row][0] = random(400);
+    points[row][1] = random(400);
+    points[row][2] = random(PI);
   }
 }
 
@@ -29,26 +31,18 @@ void update() {
 }
 
 void draw() {
-  background(20);
+  background(0);
   float progress = ((float)(frameCount))/100;
-  
-  for(int lines=0;lines<howMany*10;lines++){
-    stroke(lines,20,progress*100);
-    line(500*sin(lines+(progress*7)), 500*cos(lines+(progress*7)), 500*sin(lines+(progress*4)), 500*cos(lines+(progress*4)));
-  }
-  
+
+
    for(int row=0;row<howMany;row++){
-    for(int column=0;column<howMany;column++){
-      fill(points[row][column],100,100);
-      noStroke();
-      rect(
-        (spacer*0.5)+(row*spacer),
-        (spacer*0.5)+(column*spacer),
-        sin(progress+row+column)*points[row][column],
-        sin(progress+row+column)*points[row][column]
-        );
-        println(progress+column);
-    }
+      stroke(100,0,100);
+      noFill();
+      strokeWeight(points[row][2]*3);
+      point(points[row][0], points[row][1]);
+      
+      points[row][1] = (points[row][1]+points[row][2]) % height;
+
   }
   
   saveFrame("####.png");
