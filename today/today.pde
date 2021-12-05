@@ -31,6 +31,39 @@ void update() {
  
 }
 
+void drawPenguin(float x, float y){
+ // draw penguin
+  strokeWeight(1);
+  //black body
+  fill(0);
+  stroke(0,0,0);
+  ellipse(x, y, 50, 50);
+  
+  //white belly
+  fill(100,0,100);
+  stroke(100,0,100);
+  ellipse(x, y+10, 30, 30);
+  
+  //eyes
+  ellipse(x+10, y-10, 10, 10);
+  ellipse(x-10, y-10, 10, 10);
+  
+  //pupils
+  fill(0,0,0);
+  stroke(0,0,0);
+  ellipse(x+10, y-10, 5, 5);
+  ellipse(x-10, y-10, 5, 5);
+  
+  //feets and nose!
+  fill(10,100,100);
+  stroke(10,100,100);
+  ellipse(x+10, y+30, 5, 5);
+  ellipse(x-10, y+30, 5, 5);
+  ellipse(x, y-5, 5, 5);
+   
+  
+}
+
 void draw() {
   background(30);
   float progress = ((float)(frameCount))/100;
@@ -55,38 +88,12 @@ void draw() {
   
   // snow
   fill(100,0,100);
-  stroke(100,0,100);
-  
+  stroke(100,0,100);  
   rect(200,400,400,50);
   
-  // draw penguin
-  strokeWeight(1);
-  //black body
-  fill(0);
-  stroke(0,0,0);
-  ellipse(350, 350, 50, 50);
+  // draw the penguin
+  drawPenguin(200+(wind*200),350);
   
-  //white belly
-  fill(100,0,100);
-  stroke(100,0,100);
-  ellipse(350, 360, 30, 30);
-  
-  //eyes
-  ellipse(360, 340, 10, 10);
-  ellipse(340, 340, 10, 10);
-  
-  //pupils
-  fill(0,0,0);
-  stroke(0,0,0);
-  ellipse(360, 340, 5, 5);
-  ellipse(340, 340, 5, 5);
-  
-  //feetsand nose!
-  fill(10,100,100);
-  stroke(10,100,100);
-  ellipse(360, 380, 5, 5);
-  ellipse(340, 380, 5, 5);
-  ellipse(350, 345, 5, 5);
   
   // draw the closer snow
   for(int row=0;row<howMany;row++){
