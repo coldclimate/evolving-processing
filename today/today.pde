@@ -11,7 +11,7 @@ void setup() {
 
   size(400, 400);
   frameRate(200);
-  colorMode(HSB, 100);
+  colorMode(RGB, 100);
   
   rectMode(CENTER);
   
@@ -36,12 +36,12 @@ void drawPenguin(float x, float y){
   strokeWeight(1);
   //black body
   fill(0);
-  stroke(0,0,0);
+  stroke(0);
   ellipse(x, y, 50, 50);
   
   //white belly
-  fill(100,0,100);
-  stroke(100,0,100);
+  fill(100);
+  stroke(100);
   ellipse(x, y+10, 30, 30);
   
   //eyes
@@ -55,12 +55,26 @@ void drawPenguin(float x, float y){
   ellipse(x-10, y-10, 5, 5);
   
   //feets and nose!
-  fill(10,100,100);
-  stroke(10,100,100);
+  fill(100,80,0);
+  stroke(100,80,0);
   ellipse(x+10, y+30, 5, 5);
   ellipse(x-10, y+30, 5, 5);
   ellipse(x, y-5, 5, 5);
-   
+}
+
+
+void drawTree(float x, float y, float size,float cycle){
+  // trunk
+  fill(27,18,5);
+  stroke(27,18,5);
+  rect(x,y+(3*size),size*0.3,2*size);
+  
+  // tree
+  fill(0,39,0);
+  stroke(0,39,0);
+  triangle(x, y, x+size, y+size, x-size, y+size);
+  triangle(x, y+size, x+(1.5*size), y+(2*size), x-(1.5*size), y+(2*size));
+  triangle(x, y+(2*size), x+(2*size), y+(3*size), x-(2*size), y+(3*size));
   
 }
 
@@ -72,7 +86,7 @@ void draw() {
   
   
    for(int row=0;row<howMany;row++){
-      stroke(100,0,100);
+      stroke(100,100,100);
       noFill();
       strokeWeight(points[row][2]*3);
       
@@ -87,17 +101,26 @@ void draw() {
   }
   
   // snow
-  fill(100,0,100);
-  stroke(100,0,100);  
+  fill(100,100,100);
+  stroke(100,100,100);  
   rect(200,400,400,50);
   
-  // draw the penguin
-  drawPenguin(200+(wind*200),350);
+  //draw the tree
+  drawTree(100,250,30,progress);
+  drawTree(50,200,30,progress);
+  drawTree(150,250,30,progress);
+  drawTree(200,200,30,progress);
+  drawTree(250,250,30,progress);
+  drawTree(300,250,30,progress);
+  drawTree(350,200,30,progress);
+  drawTree(400,250,30,progress);
   
+    // draw the penguin
+  drawPenguin(200+(wind*200),350);
   
   // draw the closer snow
   for(int row=0;row<howMany;row++){
-      stroke(100,0,100);
+      stroke(100,100,100);
       noFill();
       strokeWeight(points[row][2]*3);
       
