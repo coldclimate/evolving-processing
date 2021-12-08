@@ -4,10 +4,14 @@ int howMany=200;
 int spacer = 80;
 float wind = 0;
 
+PImage moon;
+
 
 void setup() {
   background(0);
  // blendMode(ADD);
+ 
+ moon = loadImage("moon.PNG");
 
   size(400, 400);
   frameRate(200);
@@ -114,6 +118,13 @@ void drawTree(float x, float y, float size,float cycle){
   colorMode(RGB, 100);
 }
 
+void drawMoon(float progress){
+  progress = progress/10;
+  
+image(moon, 200 + (200*sin(progress/2)), 200 - (200*sin(progress/2)), 100, 100);
+     
+}
+
 void drawSnow(float bindex, float tindex, float progress){
   wind = sin(progress);
    for(int row=0;row<howMany;row++){
@@ -134,8 +145,14 @@ void drawSnow(float bindex, float tindex, float progress){
 }
 
 void draw() {
-  background(30);
+  
   float progress = ((float)(frameCount))/100;
+    background(0+progress);
+  
+  // moonah
+  
+  drawMoon(progress);
+  
   // background snow
   drawSnow(0, 1.5, progress);
   
@@ -157,7 +174,7 @@ void draw() {
     // draw the penguin
   drawPenguin(200+(wind*200),350);
   
-  // background snow
+  // foreground snow
   drawSnow(1.5, 5, progress);
     
     
