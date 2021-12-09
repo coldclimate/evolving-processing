@@ -4,6 +4,29 @@ int howMany=200;
 int spacer = 80;
 float wind = 0;
 
+// fat 2d arrays that act as bitmaps for the "sprite"
+float[][] spaceOpen = {
+  {0,0,1,0,0,1,0,0},
+  {0,0,1,0,0,1,0,0},
+  {0,1,1,1,1,1,1,0},
+  {1,1,0,1,1,0,1,1},
+  {1,1,1,1,1,1,1,1},
+  {0,0,1,1,1,1,0,0},
+  {0,0,1,0,0,1,0,0},
+  {0,1,0,0,0,0,1,0}
+};
+  
+ float[][] spaceClosed ={
+  {0,1,0,0,0,0,1,0},
+  {0,0,1,0,0,1,0,0},
+  {0,1,1,1,1,1,1,0},
+  {1,1,0,1,1,0,1,1},
+  {1,1,1,1,1,1,1,1},
+  {0,0,1,1,1,1,0,0},
+  {0,0,1,0,0,1,0,0},
+  {0,0,0,1,1,0,0,0}
+};
+
 PImage moon;
 
 
@@ -26,6 +49,7 @@ void setup() {
     points[row][1] = random(400);
     points[row][2] = random(PI);
   }
+  
 }
 
 void update() {
@@ -33,6 +57,46 @@ void update() {
     exit();
   }
  
+}
+
+void drawSpaceInvader(float x, float y,boolean closed){
+  noStroke();
+  
+  // loop though the bitmaps, rendering a square if it's a 1
+  // ugly duplicate code because it's late and I'm tired.  The boolean flips between maps
+  if(closed){
+    for(int row=0;row<8;row++){
+      for(int column=0;column<8;column++){
+        
+        if(spaceClosed[column][row] == 1){
+          fill(10,100,10);
+          rect(
+          x+(5*row),
+          y+(5*column),
+          5,
+          5);
+        }
+        
+       }
+    }
+  
+  }else{
+        for(int row=0;row<8;row++){
+      for(int column=0;column<8;column++){
+        
+        if(spaceOpen[column][row] == 1){
+          fill(10,100,10);
+          rect(
+          x+(5*row),
+          y+(5*column),
+          5,
+          5);
+        }
+        
+       }
+    }
+  }
+  
 }
 
 void drawPenguin(float x, float y){
@@ -176,6 +240,10 @@ void draw() {
   
   // foreground snow
   drawSnow(1.5, 5, progress);
+  
+  //draw spaceInvader
+  // 3rd input is true or fast, flipping the bitmaps
+  drawSpaceInvader(sin(progress)*width, 10 ,((progress*100) % 2) == 1);
     
     
   saveFrame("####.png");
