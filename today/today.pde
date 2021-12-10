@@ -4,6 +4,9 @@ int howMany=200;
 int spacer = 80;
 float wind = 0;
 
+  float rowOneStep = 10;
+  float rowTwoStep = 60;
+
 // fat 2d arrays that act as bitmaps for the "sprite"
 float[][] spaceOpen = {
   {0,0,1,0,0,1,0,0},
@@ -241,10 +244,22 @@ void draw() {
   // foreground snow
   drawSnow(1.5, 5, progress);
   
-  //draw spaceInvader
-  // 3rd input is true or fast, flipping the bitmaps
-  drawSpaceInvader(sin(progress)*width, 10 ,((progress*100) % 2) == 1);
-    
+  //draw spaceInvaders
+
+  // this is naff because they don't step down at the end of the row
+  // but it's cheap and cheap
+    rowOneStep = 10 + abs(5*progress);
+  
+    rowTwoStep = 60 + abs(5*progress);
+
+// 3rd input is true or fast, flipping the bitmaps
+  for(int vaders=0;vaders<4;vaders++){
+    drawSpaceInvader(width*0.5 + cos(progress)*width*0.5 + vaders*50, rowOneStep ,((progress*100) % 2) == 1);
+  }
+
+  for(int vaders=0;vaders<4;vaders++){
+    drawSpaceInvader(width*0.5 + sin(progress)*width*0.5 + vaders*50, rowTwoStep ,((progress*100) % 2) == 1);
+  }
     
   saveFrame("####.png");
   update();
