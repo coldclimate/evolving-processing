@@ -4,8 +4,10 @@ int howMany=200;
 int spacer = 80;
 float wind = 0;
 
-  float rowOneStep = 10;
-  float rowTwoStep = 60;
+float rowOneStep = 10;
+float rowTwoStep = 60;
+
+float[] branchRandoms;
 
 // fat 2d arrays that act as bitmaps for the "sprite"
 float[][] spaceOpen = {
@@ -51,6 +53,14 @@ void setup() {
     points[row][0] = random(400);
     points[row][1] = random(400);
     points[row][2] = random(PI);
+  }
+  
+  // you can't use random each loop of the trees move
+  // in a non-tree way
+  
+  branchRandoms =new float[20];
+  for(int row=0;row<20;row++){
+    branchRandoms[row] = random(10);
   }
   
 }
@@ -139,50 +149,15 @@ void drawTree(float x, float y, float size,float cycle){
   fill(27,18,5);
   stroke(27,18,5);
   rect(x,y+(3*size),size*0.3,2*size);
-  
   // tree
-  fill(0,40,0); stroke(0,40,0);
-  triangle(x, y, x+size, y+size, x-size, y+size);
-  
-  fill(0,35,0); stroke(0,35,0);
-  triangle(x, y+size, x+(1.5*size), y+(2*size), x-(1.5*size), y+(2*size));
-  
-  fill(0,30,0); stroke(0,30,0);
-  triangle(x, y+(2*size), x+(2*size), y+(3*size), x-(2*size), y+(3*size));
-  
-  noStroke();
-  
-  float modder = size*0.3;
-  colorMode(HSB, 100);
-  
-  fill(50+(50*sin(cycle)),100,100);
-  ellipse(x,y+modder,size/5,size/5);
-  
-  fill(50+(50*sin(cycle+1)),100,100);
-  ellipse(x-modder,y+2*modder,size/5,size/5);
-  
-  fill(50+(50*sin(cycle+2)),100,100);
-  ellipse(x+modder,y+3*modder,size/5,size/5);
-  
-  fill(50+(50*sin(cycle+3)),100,100);
-  ellipse(x,size+y+modder,size/5,size/5);
-  
-  fill(50+(50*sin(cycle+4)),100,100);
-  ellipse(x-modder,size+y+2*modder,size/5,size/5);
-  
-  fill(50+(50*sin(cycle+5)),100,100);
-  ellipse(x+modder,size+y+3*modder,size/5,size/5);
-
-  fill(50+(50*sin(cycle+6)),100,100);
-  ellipse(x,size+size+y+modder,size/5,size/5);
-  
-  fill(50+(50*sin(cycle+7)),100,100);
-  ellipse(x-modder,size+size+y+2*modder,size/5,size/5);
-  
-  fill(50+(50*sin(cycle+8)),100,100);
-  ellipse(x+modder,size+size+y+3*modder,size/5,size/5);
-  
-  colorMode(RGB, 100);
+  strokeWeight(3);
+  for(int branch=0;branch<200;branch++){ 
+    stroke(0,40+(branch % 19),0,20+((branch+2) % 19));
+    line(  x-(branch % 100)-branchRandoms[branch % 19],
+          y+(branch % 100)+branchRandoms[(branch+1) % 19],
+          x+(branch % 100)+branchRandoms[branch % 19],
+          y+(branch % 100)+branchRandoms[(branch+2) % 19] );
+  }
 }
 
 void drawMoon(float progress){
