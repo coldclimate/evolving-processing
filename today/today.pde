@@ -45,8 +45,6 @@ void setup() {
   frameRate(200);
   colorMode(RGB, 100);
   
-  rectMode(CENTER);
-  
   points = new float[howMany][3];
   
   for(int row=0;row<howMany;row++){
@@ -148,15 +146,25 @@ void drawTree(float x, float y, float size,float cycle){
   // trunk
   fill(27,18,5);
   stroke(27,18,5);
-  rect(x,y+(3*size),size*0.3,2*size);
+  rect(x,y,size*0.3,3*size);
   // tree
-  strokeWeight(3);
-  for(int branch=0;branch<200;branch++){ 
-    stroke(0,40+(branch % 19),0,20+((branch+2) % 19));
-    line(  x-(branch % 100)-branchRandoms[branch % 19],
-          y+(branch % 100)+branchRandoms[(branch+1) % 19],
-          x+(branch % 100)+branchRandoms[branch % 19],
-          y+(branch % 100)+branchRandoms[(branch+2) % 19] );
+  strokeWeight(2);
+  /// draw a line frmo the trunk outwards and down
+  
+  for(int branch=0;branch<50;branch++){ 
+    stroke(0,40,20);
+    float branchPercentage = ((float)(branch))/100;
+    line( x,
+          (y-size) + (branchPercentage * size*6),
+          x+(100*branchPercentage)+branchRandoms[(branch % 19)],
+          (y-size) + (branchPercentage * size*6) + 20
+          );
+          
+    line( x,
+          (y-size) + (branchPercentage * size*6),
+          x-(100*branchPercentage)-branchRandoms[(branch % 19)],
+          (y-size) + (branchPercentage * size*6) + 20
+          );
   }
 }
 
@@ -201,7 +209,7 @@ void draw() {
   // ground snow
   fill(100,100,100);
   stroke(100,100,100);  
-  rect(200,400,400,50);
+  rect(0,300,400,100);
   
   //draw the trees
   drawTree(100,250,30,progress);
