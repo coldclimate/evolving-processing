@@ -152,7 +152,7 @@ void drawTree(float x, float y, float size,float cycle){
   /// draw a line frmo the trunk outwards and down
   
   for(int branch=0;branch<50;branch++){ 
-    stroke(0,40,20);
+    stroke(0,20+branch,0+branch);
     float branchPercentage = ((float)(branch))/100;
     line( x,
           (y-size) + (branchPercentage * size*6),
@@ -176,15 +176,16 @@ image(moon, 200 + (200*sin(progress/2)), 200 - (200*sin(progress/2)), 100, 100);
 }
 
 void drawSnow(float bindex, float tindex, float progress){
-  wind = sin(progress);
+  
    for(int row=0;row<howMany;row++){
+     wind = sin(progress+row);
       stroke(100,100,100);
       noFill();
       strokeWeight(points[row][2]*3);
       
       // only draw the small snow
       if (points[row][2] >bindex && points[row][2] <tindex) {
-      point(points[row][0], points[row][1]);
+       point(points[row][0], points[row][1]);
       }
       
       points[row][0] = (points[row][0]+(wind * points[row][2])) % width;
