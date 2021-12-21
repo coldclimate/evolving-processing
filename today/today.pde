@@ -1,6 +1,6 @@
 
 float[][] points;
-int howMany=200;
+int howMany=500;
 int spacer = 80;
 float wind = 0;
 
@@ -142,7 +142,7 @@ void drawPenguin(float x, float y){
 }
 
 
-void drawTree(float x, float y, float size,float cycle){
+void drawTree(float x, float y, float size,float darkness, float cycle){
   // trunk
   fill(27,18,5);
   stroke(27,18,5);
@@ -152,7 +152,7 @@ void drawTree(float x, float y, float size,float cycle){
   /// draw a line frmo the trunk outwards and down
   
   for(int branch=0;branch<50;branch++){ 
-    stroke(0,20+branch,0+branch);
+    stroke(0,darkness+branch-20,darkness+branch-50);
     float branchPercentage = ((float)(branch))/100;
     line( x,
           (y-size) + (branchPercentage * size*6),
@@ -165,13 +165,40 @@ void drawTree(float x, float y, float size,float cycle){
           x-(100*branchPercentage)-branchRandoms[(branch % 19)],
           (y-size) + (branchPercentage * size*6) + 20
           );
+          
+     // if it's the first couple of rows of trees eg. darkness > 40
+     // add some twinkly lights
+     if (darkness >40 ){
+       
+       // flip the colour mode to make cycling colours easier
+       colorMode(HSB, 100);
+     // these use the same "draw in a triangle" as the branches basically
+     for(float light=0;light<15;light++){
+       fill(((10+light)*300*cycle) % 100,100,100);
+       noStroke();
+       branchPercentage = light/15;
+
+       ellipse( 
+         x +
+         ((light%2)*2-1)*light * 2 * branchRandoms[((int)(light) % 19)],  //a flick flack, a width, a randomness
+       
+          (y-size) + (branchPercentage * size*3),
+          3,
+          3
+          );
+     }
+     }
+     
+     // flip the colour mode back
+     colorMode(RGB, 100);
+     
   }
 }
 
 void drawMoon(float progress){
   progress = progress/10;
   
-image(moon, 200 + (200*sin(progress/2)), 200 - (200*sin(progress/2)), 100, 100);
+image(moon, 200 + (200*sin(progress/2)), 100 - (200*sin(progress/2)), 100, 100);
      
 }
 
@@ -213,14 +240,10 @@ void draw() {
   rect(0,300,400,100);
   
   //draw the trees
-  drawTree(100,250,30,progress);
-  drawTree(50,200,30,progress);
-  drawTree(150,250,30,progress);
-  drawTree(200,200,30,progress);
-  drawTree(250,250,30,progress);
-  drawTree(300,250,30,progress);
-  drawTree(350,200,30,progress);
-  drawTree(400,250,30,progress);
+  for(int row=0;row<50;row++){
+    drawTree((row*53) % width,140+ (row * 3) % 150 ,30,row,progress);
+  }
+ 
   
     // draw the penguin
   drawPenguin(200+(wind*200),350);
